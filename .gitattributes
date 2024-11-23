@@ -1,0 +1,11 @@
+# Handle all text files with automatic line-ending normalization
+* text=auto
+
+# Ensure shell scripts and configuration files always use LF
+*.sh text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+
+# For Windows-specific scripts, enforce CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
