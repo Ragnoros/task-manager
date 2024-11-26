@@ -14,6 +14,11 @@ const taskSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    status: {
+      type: String,
+      required: true,
+      enum: ["completed", "blocked", "in-progress", "not-started"],
+    },
   },
   { timestamps: true }
 );
