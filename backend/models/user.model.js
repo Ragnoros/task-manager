@@ -19,10 +19,6 @@ const userSchema = new Schema(
       required: true,
       enum: ["male", "female", "prefer not to say"],
     },
-    profilePic: {
-      type: String,
-      default: "",
-    },
   },
   { timestamps: true }
 );
