@@ -9,7 +9,6 @@ export const postTask = async (req, res) => {
     }
 
     const findTask = await Task.findOne({ title });
-    console.log(findTask);
     if (findTask && findTask.userId == userId) {
       return res.status(400).json("Task already exists");
     }
