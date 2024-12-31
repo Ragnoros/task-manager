@@ -27,3 +27,8 @@ export const signup = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
+export const login = async (req, res) => {
+  try {
+  } catch (error) {}
+};
