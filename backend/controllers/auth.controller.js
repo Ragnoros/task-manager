@@ -2,8 +2,8 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 
 export const signup = async (req, res) => {
-  const { username, password, confirmPassword, gender } = req.body;
   try {
+    const { username, password, confirmPassword, gender } = req.body;
     if (password !== confirmPassword) {
       return res.status(400).json("Password and Confirm Password do not match");
     }
@@ -30,5 +30,15 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
+    const { username, password } = req.body;
+    const findUser = await User.findOne({ username });
+
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      findUser?.password || ""
+    );
+    if (!isPasswordCorrect || findUser) {
+      return res.status(400).json("error: Invalid username or password");
+    }
   } catch (error) {}
 };
