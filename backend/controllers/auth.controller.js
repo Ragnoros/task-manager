@@ -40,5 +40,16 @@ export const login = async (req, res) => {
     if (!isPasswordCorrect || findUser) {
       return res.status(400).json("error: Invalid username or password");
     }
-  } catch (error) {}
+
+    generateTokenAndSetCookie(findUser._id, res);
+    res.status(200).json({
+      _id: findUser._id,
+      fullName: findUser.fullName,
+      username: findUser.username,
+      profilePic: findUser.profilePic,
+    });
+  } catch (error) {
+    console.log("Error in login controller", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
