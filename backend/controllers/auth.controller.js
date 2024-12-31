@@ -20,8 +20,18 @@ export const signup = async (req, res) => {
       password: hashedPassword,
       gender,
     });
-    await insertUser.save();
-    res.status(201).send(insertUser);
+    if (insertUser) {
+      generateTokenAndSetCookie(insertUser._id, res);
+      await insertUser.save();
+      res.status(201).json({
+        _id: insertUser._id,
+        fullName: insertUser.fullName,
+        username: insertUser.username,
+        profilePic: insertUser.profilePic,
+      });
+    } else {
+      res.status(400).json({ error: "Invalid user data" });
+    }
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Internal Server Error");
