@@ -26,3 +26,8 @@ export const postTask = async (req, res) => {
     res.status(500).json("Error Internal Server Error");
   }
 };
+export const getTasks = async (req, res) => {
+  try {
+    const { userId } = req.params;
+  } catch (error) {}
+};
