@@ -26,3 +26,13 @@ export const postTask = async (req, res) => {
     res.status(500).json("Error Internal Server Error");
   }
 };
+export const getTasks = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const findTasks = await Task.findOne({ userId: userId });
+    res.status(200).send(findTasks);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json("Error Internal Server Error");
+  }
+};
