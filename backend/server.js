@@ -8,7 +8,7 @@ const app = express();
 
 dotenv.config();
 app.use(express.json());
-app.use(cookieParser);
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 5000;
 
