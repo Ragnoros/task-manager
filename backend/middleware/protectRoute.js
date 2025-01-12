@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 
 const protectRoute = async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const { userId, taskId } = req.params;
     const token = req.cookies.jwt;
     if (!token) {
       return res
@@ -19,7 +19,7 @@ const protectRoute = async (req, res, next) => {
       return res.status(401).json({ error: "User not found" });
     }
     if (userId !== decoded.userId) {
-      return res.status(401).json({ error: "Access Denied" });
+      return res.status(403).json({ error: "Access Denied" });
     }
     req.user = user;
     next();
